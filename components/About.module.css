@@ -1,0 +1,99 @@
+.about {
+  position: relative;
+}
+.about::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  top: 0; bottom: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,201,167,0.025) 50%, transparent 100%);
+  pointer-events: none;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  gap: 5rem;
+  align-items: center;
+}
+.avatarCol {
+  display: flex;
+  justify-content: center;
+}
+.avatarWrapper {
+  position: relative;
+  width: 230px; height: 230px;
+}
+.avatar {
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0D1B2A 0%, #1a2f44 40%, #00C9A7 100%);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; z-index: 1;
+  box-shadow: 0 20px 60px rgba(0,201,167,0.2);
+}
+.avatarInitials {
+  font-family: 'DM Serif Display', serif;
+  font-size: 3.5rem;
+  color: #F5ECD7;
+  letter-spacing: -0.02em;
+}
+.avatarRing {
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(0,201,167,0.3);
+  animation: spin 18s linear infinite;
+}
+.avatarRing2 {
+  position: absolute;
+  inset: -28px;
+  border-radius: 50%;
+  border: 1px dashed rgba(245,236,215,0.1);
+  animation: spin 30s linear infinite reverse;
+}
+@keyframes spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+
+.textCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.bio {
+  color: rgba(245,236,215,0.75);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+.bio strong { color: #F5ECD7; font-weight: 600; }
+.bio em { color: #00C9A7; font-style: normal; }
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+}
+.statCard {
+  padding: 0.9rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.statValue {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #F5ECD7;
+}
+.statLabel {
+  font-size: 0.72rem;
+  color: rgba(245,236,215,0.5);
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; gap: 3rem; }
+  .avatarCol { display: none; }
+  .statsGrid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .statsGrid { grid-template-columns: 1fr 1fr; }
+}

@@ -1,0 +1,98 @@
+.section { position: relative; }
+.eduGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-top: 3rem;
+}
+.eduCard {
+  padding: 1.8rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+}
+.eduIcon {
+  flex-shrink: 0;
+  width: 46px; height: 46px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+}
+.eduDegree {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #F5ECD7;
+  margin-bottom: 0.25rem;
+}
+.eduDegree em { color: #00C9A7; font-style: normal; }
+.eduSchool {
+  font-size: 0.88rem;
+  color: rgba(245,236,215,0.6);
+  margin-bottom: 0.2rem;
+}
+.schoolLink {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  color: #a78bfa; transition: opacity 0.2s;
+}
+.schoolLink:hover { opacity: 0.75; }
+.eduMeta {
+  font-size: 0.78rem;
+  color: rgba(245,236,215,0.4);
+}
+
+.certsSection {
+  margin-top: 3rem;
+}
+.certsTitle {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem;
+  color: #F5ECD7;
+  margin-bottom: 1.5rem;
+}
+.certsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 0.9rem;
+}
+.certCard {
+  padding: 1.2rem 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  text-decoration: none;
+}
+.certCard:hover .certIcon { opacity: 1; transform: translate(2px, -2px); }
+.certProvider {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #00C9A7;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.certName {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #F5ECD7;
+  line-height: 1.4;
+  flex: 1;
+}
+.certFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+.certYear {
+  font-size: 0.75rem;
+  color: rgba(245,236,215,0.4);
+}
+.certIcon {
+  color: rgba(245,236,215,0.25);
+  opacity: 0.4;
+  transition: opacity 0.25s, transform 0.25s;
+}
+
+@media (max-width: 700px) {
+  .eduGrid { grid-template-columns: 1fr; }
+}

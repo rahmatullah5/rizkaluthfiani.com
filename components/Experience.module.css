@@ -1,0 +1,107 @@
+.section { position: relative; }
+.timeline {
+  position: relative;
+  margin-top: 3.5rem;
+  padding-left: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--teal), rgba(0,201,167,0.1));
+}
+.entry {
+  position: relative;
+}
+.dot {
+  position: absolute;
+  left: -2.5rem;
+  top: 1.5rem;
+  transform: translateX(-3px);
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(13,27,42,1), 0 0 0 5px rgba(255,255,255,0.08);
+  z-index: 1;
+}
+.card {
+  padding: 1.8rem 2rem;
+}
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+  flex-wrap: wrap;
+}
+.role {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #F5ECD7;
+  margin-bottom: 0.2rem;
+}
+.company {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--accent, var(--teal));
+  margin-bottom: 0.25rem;
+}
+.companyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: inherit;
+  transition: opacity 0.2s;
+}
+.companyLink:hover { opacity: 0.75; }
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  color: rgba(245,236,215,0.45);
+}
+.period {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(245,236,215,0.5);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.bullet {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  font-size: 0.92rem;
+  color: rgba(245,236,215,0.7);
+  line-height: 1.7;
+}
+.bulletDot {
+  margin-top: 0.52rem;
+  flex-shrink: 0;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  opacity: 0.75;
+}
+
+@media (max-width: 600px) {
+  .timeline { padding-left: 1.5rem; }
+  .dot { left: -1.5rem; }
+  .card { padding: 1.2rem 1.2rem; }
+  .cardHeader { flex-direction: column; }
+  .period { align-self: flex-start; }
+}
