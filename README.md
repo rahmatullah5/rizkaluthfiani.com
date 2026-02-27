@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<!-- @format -->
+
+# rizkaluthfiani.com
+
+Personal portfolio website for **Rizka Luthfiani Fakhriah** — Project Manager, Product Owner, and aspiring Data Engineer.
+
+🌐 **Live:** [rizkaluthfiani.com](https://rizkaluthfiani.com)
+
+---
+
+## Stack
+
+- **Framework** — [Next.js 14](https://nextjs.org) (App Router)
+- **Styling** — Vanilla CSS with CSS Modules
+- **Icons** — [Lucide React](https://lucide.dev)
+- **Fonts** — [DM Serif Display](https://fonts.google.com/specimen/DM+Serif+Display) + [Inter](https://fonts.google.com/specimen/Inter) (Google Fonts)
+
+---
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Resume
 
-## Learn More
+The downloadable resume PDF lives at [`public/Rizka-Luthfiani-Resume.pdf`](./public/Rizka-Luthfiani-Resume.pdf).  
+To update it, replace the file at that path and rebuild.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+app/
+  globals.css       # Design system tokens & animations
+  layout.tsx        # Root layout + SEO metadata
+  page.tsx          # Page assembly
 
-## Deploy on Vercel
+components/
+  Navbar            # Sticky nav with mobile menu
+  Hero              # Typewriter hero + CTAs
+  About             # Bio + stat cards
+  Experience        # Vertical role timeline
+  Skills            # Progress bars for PM & Data skills
+  Projects          # Portfolio card grid (7 projects)
+  Education         # Degree + certifications
+  Contact           # Contact links
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+public/
+  Rizka-Luthfiani-Resume.pdf
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Deployment
+
+Push to GitHub and connect to [Vercel](https://vercel.com) — Next.js is detected automatically.
+
+```bash
+npm run build   # Verify build before deploying
+```
+
+---
+
+## Contact
+
+📧 hi.rizkaluthfiani@gmail.com  
+🔗 [linkedin.com/in/rizka-luthfiani](https://www.linkedin.com/in/rizka-luthfiani/)  
+🐙 [github.com/rizkaluthfiani](https://github.com/rizkaluthfiani)

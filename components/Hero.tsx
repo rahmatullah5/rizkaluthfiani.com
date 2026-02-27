@@ -3,7 +3,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowDown, Github, Linkedin, Mail, BookOpen } from "lucide-react";
+import {
+  ArrowDown,
+  Github,
+  Linkedin,
+  Mail,
+  BookOpen,
+  Download,
+} from "lucide-react";
 import styles from "./Hero.module.css";
 
 const roles = ["Project Manager", "Product Owner", "Aspiring Data Engineer"];
@@ -77,6 +84,13 @@ export default function Hero() {
           </a>
           <a href="#projects" className="btn btn-outline">
             View my work
+          </a>
+          <a
+            href="/Rizka-Luthfiani-Resume.pdf"
+            download="Rizka-Luthfiani-Resume.pdf"
+            className="btn btn-outline"
+          >
+            <Download size={16} /> Resume
           </a>
         </div>
 
