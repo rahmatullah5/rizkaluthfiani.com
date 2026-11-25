@@ -1,0 +1,357 @@
+.board {
+  --i: 0;
+  color: #e9edf2;
+}
+
+/* Column headers */
+.cols {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.col {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 2px 12px;
+  opacity: 0.45;
+  transition: opacity 0.3s;
+}
+.col:hover,
+.col.active,
+.col.done {
+  opacity: 1;
+}
+.col:focus-visible {
+  outline: 2px solid var(--note);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+.num {
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  color: var(--note);
+}
+.name {
+  font-family: var(--font-display), sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.caption {
+  font-size: 14px;
+  color: #98a2b0;
+}
+.timer {
+  display: block;
+  height: 2px;
+  margin-top: 10px;
+  background: #2d3643;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.done .timer {
+  background: var(--note);
+}
+.timer i {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--note);
+  transform-origin: left;
+  animation: fill linear forwards;
+}
+@keyframes fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Lane + travelling card */
+.lane {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+  min-height: 236px;
+}
+.slot {
+  border: 1px dashed #2d3643;
+  border-radius: 10px;
+}
+.card {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: calc((100% - 36px) / 4);
+  transform: translateX(calc(var(--i) * (100% + 12px)));
+  transition: transform 0.7s cubic-bezier(0.65, 0, 0.25, 1);
+  background: #fff;
+  color: var(--ink);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  padding: 16px;
+  overflow: hidden;
+}
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  animation: rise 0.45s 0.35s both;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+/* Discover */
+.quote {
+  font-family: var(--font-display), sans-serif;
+  font-size: 18px;
+  line-height: 1.25;
+  font-weight: 500;
+}
+.notes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+}
+.notes span {
+  background: var(--note);
+  color: var(--note-ink);
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 3px;
+  animation: pop 0.35s both;
+}
+.notes span:nth-child(2) {
+  rotate: 2deg;
+}
+.notes span:nth-child(3) {
+  rotate: -2deg;
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.6) translateY(6px);
+  }
+}
+
+/* Define */
+.story {
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--ink-2);
+}
+.checks {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: auto;
+  font-size: 13px;
+}
+.checks li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: checkText 0.3s both;
+}
+.checks i {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1.5px solid var(--line);
+  position: relative;
+  flex: none;
+}
+.checks li i {
+  animation: tick 0.3s both;
+  animation-delay: inherit;
+}
+.checks li i::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 0;
+  width: 4px;
+  height: 8px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  rotate: 45deg;
+}
+@keyframes tick {
+  to {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+}
+@keyframes checkText {
+  from {
+    opacity: 0.35;
+  }
+}
+
+/* Deliver */
+.team {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.team span {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  background: #eef1fd;
+  color: var(--accent);
+  border: 2px solid #fff;
+  margin-left: -6px;
+  animation: pop 0.3s both;
+}
+.team span:first-child {
+  margin-left: 0;
+}
+.team em {
+  font-style: normal;
+  font-size: 12px;
+  color: var(--muted);
+  margin-left: 6px;
+}
+.bar {
+  margin-top: auto;
+  height: 10px;
+  border-radius: 6px;
+  background: var(--bg);
+  overflow: hidden;
+}
+.bar div {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 6px;
+  animation: grow 2.2s 0.5s cubic-bezier(0.3, 0, 0.2, 1) both;
+}
+@keyframes grow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+.barLabel {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--muted);
+}
+.onTime {
+  color: #1a7f4b;
+  font-weight: 600;
+  animation: rise 0.3s 2.5s both;
+}
+
+/* Measure */
+.chart {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  border-bottom: 1px solid var(--line);
+  min-height: 90px;
+}
+.chart span {
+  flex: 1;
+  background: var(--accent);
+  border-radius: 3px 3px 0 0;
+  transform-origin: bottom;
+  animation: barUp 0.5s both;
+}
+.chart span:last-child {
+  background: var(--note);
+  outline: 1px solid #e0c552;
+}
+@keyframes barUp {
+  from {
+    transform: scaleY(0);
+  }
+}
+.shipped {
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.shipped b {
+  color: #1a7f4b;
+}
+
+.foot {
+  margin-top: 14px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  color: #7d8796;
+}
+
+/* Small screens: steps as a row, card in place */
+@media (max-width: 760px) {
+  .cols {
+    gap: 6px;
+  }
+  .name {
+    font-size: 14px;
+  }
+  .caption {
+    display: none;
+  }
+  .lane {
+    display: block;
+    min-height: 220px;
+  }
+  .slot {
+    display: none;
+  }
+  .card {
+    position: relative;
+    width: 100%;
+    min-height: 220px;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+  .inner * {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+  }
+  .inner {
+    animation: fade 0.4s both;
+  }
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+  }
+}

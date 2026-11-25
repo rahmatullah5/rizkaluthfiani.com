@@ -2,7 +2,7 @@
 
 # rizkaluthfiani.com
 
-Personal portfolio website for **Rizka Luthfiani Fakhriah** — Project Manager, Product Owner, and aspiring Data Engineer.
+Personal site for **Rizka Luthfiani Fakhriah** — Product Owner / Project Manager.
 
 🌐 **Live:** [rizkaluthfiani.com](https://rizkaluthfiani.com)
 
@@ -10,52 +10,29 @@ Personal portfolio website for **Rizka Luthfiani Fakhriah** — Project Manager,
 
 ## Stack
 
-- **Framework** — [Next.js 14](https://nextjs.org) (App Router)
-- **Styling** — Vanilla CSS with CSS Modules
-- **Icons** — [Lucide React](https://lucide.dev)
-- **Fonts** — [DM Serif Display](https://fonts.google.com/specimen/DM+Serif+Display) + [Inter](https://fonts.google.com/specimen/Inter) (Google Fonts)
+- Next.js 16 (App Router), static pages, no client JS on the homepage
+- Plain CSS (`app/globals.css`) + one CSS module for `/resume`
+- Fonts via `next/font`: Bricolage Grotesque, Geist, Geist Mono
 
 ---
 
-## Getting Started
+## Editing content
+
+All copy lives in [`lib/content.ts`](./lib/content.ts) — roles, case studies,
+toolkit, education, certifications. The homepage and `/resume` both read from it.
+
+## Resume PDF
+
+`/resume` is a print-ready A4 page. To regenerate the PDF after editing content:
 
 ```bash
-npm install
-npm run dev
+npm run dev -- -p 3017
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new \
+  --no-pdf-header-footer --print-to-pdf=public/Rizka-Luthfiani-Resume.pdf \
+  http://localhost:3017/resume
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
-
----
-
-## Resume
-
-The downloadable resume PDF lives at [`public/Rizka-Luthfiani-Resume.pdf`](./public/Rizka-Luthfiani-Resume.pdf).  
-To update it, replace the file at that path and rebuild.
-
----
-
-## Project Structure
-
-```
-app/
-  globals.css       # Design system tokens & animations
-  layout.tsx        # Root layout + SEO metadata
-  page.tsx          # Page assembly
-
-components/
-  Navbar            # Sticky nav with mobile menu
-  Hero              # Typewriter hero + CTAs
-  About             # Bio + stat cards
-  Experience        # Vertical role timeline
-  Skills            # Progress bars for PM & Data skills
-  Projects          # Portfolio card grid (7 projects)
-  Education         # Degree + certifications
-  Contact           # Contact links
-
-public/
-  Rizka-Luthfiani-Resume.pdf
-```
+Keep it to one page (check with any PDF viewer).
 
 ---
 
