@@ -33,11 +33,15 @@ export type Role = {
   bullets: string[];
   outcome?: string;
   win?: string;
+  track: "Product" | "Project" | "Data" | "Marketing";
+  span: [number, number];
 };
 
 export const roles: Role[] = [
   {
     company: "Terus E-Learning",
+    track: "Product",
+    span: [74, 100],
     role: "Product Owner",
     mode: "Remote · Full-time",
     period: "Current",
@@ -51,6 +55,8 @@ export const roles: Role[] = [
   },
   {
     company: "ASAP Company",
+    track: "Project",
+    span: [50, 72],
     role: "Project Manager",
     mode: "Remote · Part-time",
     period: "Client project",
@@ -66,6 +72,8 @@ export const roles: Role[] = [
   },
   {
     company: "Yayasan Anak Bangsa Bisa by GoTo",
+    track: "Data",
+    span: [25, 48],
     companyUrl: "https://www.goto-impact.org/generasi-gigih/",
     role: "Data Analyst (Generasi GIGIH)",
     mode: "6-month program",
@@ -81,6 +89,8 @@ export const roles: Role[] = [
   },
   {
     company: "Griin.id",
+    track: "Marketing",
+    span: [0, 23],
     companyUrl: "https://www.linkedin.com/company/griin-id/about/",
     role: "Marketing Intern",
     mode: "Remote · Full-time internship",
@@ -134,6 +144,7 @@ export type CaseStudy = {
   question: string;
   did: string;
   result: string;
+  label: string;
   tags: string[];
   href: string;
   linkLabel: string;
@@ -143,6 +154,7 @@ export const caseStudies: CaseStudy[] = [
   {
     id: "CS-01",
     title: "FMCG sales reporting tool",
+    label: "Analytics",
     year: "2024",
     question:
       "A coffee chain's sales team needs one place to see what sells, where and when.",
@@ -155,6 +167,7 @@ export const caseStudies: CaseStudy[] = [
   {
     id: "CS-02",
     title: "Digital library database system",
+    label: "System design",
     year: "2024",
     question:
       "An e-library needs a data model that supports members, books, loans and holds.",
@@ -167,6 +180,7 @@ export const caseStudies: CaseStudy[] = [
   {
     id: "CS-03",
     title: "High-risk loan prediction",
+    label: "Fintech",
     year: "2025",
     question: "Which loans are likely to become non-performing?",
     did: "Compared several modelling approaches on loan data and packaged the best one behind an API and app.",
@@ -178,6 +192,7 @@ export const caseStudies: CaseStudy[] = [
   {
     id: "CS-04",
     title: "Online lending among young adults",
+    label: "Fintech",
     year: "2024",
     question:
       "Why are personal online loans surging among young Indonesians?",
@@ -190,6 +205,7 @@ export const caseStudies: CaseStudy[] = [
   {
     id: "CS-05",
     title: "Country segmentation for an NGO",
+    label: "Analytics",
     year: "2025",
     question: "Where should an NGO focus limited aid funding?",
     did: "Clustered countries by socio-economic indicators to group them by need.",
@@ -201,6 +217,7 @@ export const caseStudies: CaseStudy[] = [
   {
     id: "CS-06",
     title: "Stroke risk prediction",
+    label: "ML",
     year: "2022",
     question: "Can we flag patients at high risk of stroke early?",
     did: "Team project: cleaned clinical data, tested several models and shipped the best one as a Streamlit app.",

@@ -1,234 +1,169 @@
 /** @format */
 
+import Sidebar from "@/components/Sidebar";
+import PriorityMatrix from "@/components/PriorityMatrix";
 import WorkflowBoard from "@/components/WorkflowBoard";
+import Roadmap from "@/components/Roadmap";
+import Backlog from "@/components/Backlog";
+import TicketComposer from "@/components/TicketComposer";
 import {
-  profile,
   roles,
   caseStudies,
   toolkit,
   education,
   certifications,
+  extras,
 } from "@/lib/content";
 
-function Arrow() {
+function ViewHead({
+  crumb,
+  title,
+  meta,
+}: {
+  crumb: string;
+  title: string;
+  meta?: string;
+}) {
   return (
-    <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden>
-      <path
-        d="M3 9L9 3M4 3h5v5"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
-    </svg>
-  );
-}
-
-function SectionHead({ n, title }: { n: string; title: string }) {
-  return (
-    <header className="sec-head">
-      <span className="sec-num">{n}</span>
-      <h2>{title}</h2>
+    <header className="view-head">
+      <p className="crumb">
+        rizka <span>/</span> {crumb}
+      </p>
+      <div className="view-title">
+        <h2>{title}</h2>
+        {meta && <span className="meta">{meta}</span>}
+      </div>
     </header>
   );
 }
 
-const stats = [
-  { big: "4", small: "engineers led, 3 countries" },
-  { big: "On time", small: "client delivery" },
-  { big: "90%+", small: "model accuracy" },
-  { big: "3.64", small: "GPA, cum laude" },
-];
-
 export default function Home() {
   return (
-    <>
-      <nav className="topbar">
-        <div className="wrap topbar-in">
-          <a href="#top" className="mark" aria-label="Home">
-            <span className="mark-box">RL</span>
-            <span className="mark-name">Rizka Luthfiani</span>
-          </a>
-          <div className="nav-links">
-            <a href="#how">How I work</a>
-            <a href="#work">Experience</a>
-            <a href="#cases">Projects</a>
-            <a href="#contact">Contact</a>
-          </div>
-          <a className="btn btn-sm" href="/resume">
-            Resume
-          </a>
-        </div>
-      </nav>
+    <div className="app">
+      <Sidebar
+        counts={{ roadmap: roles.length, backlog: caseStudies.length }}
+      />
 
-      <main id="top">
-        <section className="wrap hero">
-          <div className="hero-copy">
-            <p className="eyebrow">Product Owner · Jakarta</p>
-            <h1>
-              I turn messy requirements into{" "}
-              <span className="hl">shipped product</span>.
-            </h1>
-            <p className="lede">
-              Product Owner at Terus E-Learning. Backlogs, sprints, and
-              data-backed calls.
+      <main className="main">
+        <section id="overview" className="view hero">
+          <div className="hero-text">
+            <p className="crumb">
+              rizka <span>/</span> overview
             </p>
+            <h1>
+              Product Owner who decides <em>what gets built next</em> — and
+              makes sure it ships.
+            </h1>
+            <dl className="facts">
+              <div>
+                <dt>Now</dt>
+                <dd>Product Owner, Terus E-Learning</dd>
+              </div>
+              <div>
+                <dt>Before</dt>
+                <dd>PM for 4 engineers in 3 countries</dd>
+              </div>
+              <div>
+                <dt>Also</dt>
+                <dd>SQL, Python, Power BI</dd>
+              </div>
+            </dl>
             <div className="cta-row">
-              <a className="btn" href={`mailto:${profile.email}`}>
-                Email me
+              <a className="btn" href="#contact">
+                Open a ticket
               </a>
               <a className="btn btn-ghost" href="/resume">
                 Resume
               </a>
-              <a
-                className="btn btn-ghost"
-                href={profile.linkedin}
-                target="_blank"
-                rel="noreferrer"
-              >
-                LinkedIn <Arrow />
-              </a>
             </div>
           </div>
-          <ul className="stats" aria-label="Highlights">
-            {stats.map((s) => (
-              <li key={s.small}>
-                <b>{s.big}</b>
-                <span>{s.small}</span>
-              </li>
-            ))}
-          </ul>
+          <PriorityMatrix />
         </section>
 
-        <section id="how" className="sec-band">
-          <div className="wrap sec">
-            <SectionHead n="01" title="How I work" />
-            <WorkflowBoard />
-          </div>
+        <section id="how" className="view dark">
+          <ViewHead crumb="how-i-work" title="How I work" meta="auto-plays" />
+          <WorkflowBoard />
         </section>
 
-        <section id="work" className="wrap sec">
-          <SectionHead n="02" title="Experience" />
-          <ol className="roles">
-            {roles.map((r) => (
-              <li key={r.company} className="role">
-                <span className="period">{r.period}</span>
-                <div>
-                  <h3>
-                    {r.role}
-                    <span className="at"> · </span>
-                    {r.companyUrl ? (
-                      <a href={r.companyUrl} target="_blank" rel="noreferrer">
-                        {r.company}
-                      </a>
-                    ) : (
-                      r.company
-                    )}
-                  </h3>
-                  <p className="ctx">{r.oneLiner}</p>
+        <section id="roadmap" className="view">
+          <ViewHead
+            crumb="roadmap"
+            title="Career roadmap"
+            meta="click a row"
+          />
+          <Roadmap />
+        </section>
+
+        <section id="backlog" className="view">
+          <ViewHead
+            crumb="backlog"
+            title="Shipped side projects"
+            meta={`${caseStudies.length} done`}
+          />
+          <Backlog />
+        </section>
+
+        <section id="specs" className="view">
+          <ViewHead crumb="specs" title="Specs" />
+          <div className="specs">
+            <div className="panel">
+              <h3>Toolkit</h3>
+              {toolkit.map((g) => (
+                <div key={g.group} className="prop">
+                  <span className="prop-k">{g.group}</span>
+                  <ul className="pills">
+                    {g.items.map((it) => (
+                      <li key={it}>{it}</li>
+                    ))}
+                  </ul>
                 </div>
-                {r.win ? <span className="win">{r.win}</span> : <span />}
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        <section id="cases" className="wrap sec">
-          <SectionHead n="03" title="Projects" />
-          <div className="cases">
-            {caseStudies.map((c) => (
-              <a
-                key={c.id}
-                className="case"
-                href={c.href}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <div className="case-top">
-                  <span className="mono">{c.tags[0]}</span>
-                  <span className="mono">{c.year}</span>
+              ))}
+            </div>
+            <div className="panel">
+              <h3>Education</h3>
+              {education.map((e) => (
+                <div key={e.school} className="prop">
+                  <span className="prop-k">{e.period}</span>
+                  <span>
+                    <b>{e.school}</b>
+                    <br />
+                    <span className="muted">{e.detail}</span>
+                  </span>
                 </div>
-                <h3>{c.title}</h3>
-                <p>{c.question}</p>
-                <span className="case-link">
-                  {c.linkLabel} <Arrow />
-                </span>
-              </a>
-            ))}
-          </div>
-        </section>
-
-        <section className="wrap sec">
-          <SectionHead n="04" title="Toolkit" />
-          <div className="toolkit">
-            {toolkit.map((g) => (
-              <div key={g.group} className="tk-row">
-                <h3>{g.group}</h3>
+              ))}
+              <div className="prop">
+                <span className="prop-k">Languages</span>
+                <span>{extras.languages}</span>
+              </div>
+              <details className="certs">
+                <summary>{certifications.length} certifications</summary>
                 <ul>
-                  {g.items.map((it) => (
-                    <li key={it}>{it}</li>
+                  {certifications.map((c) => (
+                    <li key={c.name}>
+                      <a href={c.href} target="_blank" rel="noreferrer">
+                        <span>
+                          {c.name} <em>· {c.org}</em>
+                        </span>
+                        <span className="mono">{c.year}</span>
+                      </a>
+                    </li>
                   ))}
                 </ul>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="wrap sec">
-          <SectionHead n="05" title="Education" />
-          <div className="edu-list">
-            {education.map((e) => (
-              <div key={e.school} className="edu">
-                <strong>{e.school}</strong>
-                <span>{e.detail}</span>
-                <span className="mono">{e.period}</span>
-              </div>
-            ))}
-          </div>
-          <details className="certs">
-            <summary>{certifications.length} certifications</summary>
-            <ul>
-              {certifications.map((c) => (
-                <li key={c.name}>
-                  <a href={c.href} target="_blank" rel="noreferrer">
-                    <span>
-                      {c.name} <em>· {c.org}</em>
-                    </span>
-                    <span className="mono">{c.year}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </details>
-        </section>
-
-        <section id="contact" className="contact">
-          <div className="wrap">
-            <h2>Let&apos;s talk product.</h2>
-            <a className="big-mail" href={`mailto:${profile.email}`}>
-              {profile.email}
-            </a>
-            <div className="contact-links">
-              <a href={profile.linkedin} target="_blank" rel="noreferrer">
-                LinkedIn <Arrow />
-              </a>
-              <a href={profile.github} target="_blank" rel="noreferrer">
-                GitHub <Arrow />
-              </a>
-              <a href={profile.medium} target="_blank" rel="noreferrer">
-                Medium <Arrow />
-              </a>
-              <a href={profile.resumePdf} download>
-                Resume PDF
-              </a>
+              </details>
             </div>
           </div>
         </section>
-      </main>
 
-      <footer className="wrap foot">
-        <span>© {new Date().getFullYear()} Rizka Luthfiani Fakhriah</span>
-        <span>Jakarta</span>
-      </footer>
-    </>
+        <section id="contact" className="view dark contact">
+          <ViewHead crumb="new-ticket" title="Got a product that needs an owner?" />
+          <TicketComposer />
+        </section>
+
+        <footer className="foot">
+          <span>© {new Date().getFullYear()} Rizka Luthfiani Fakhriah</span>
+          <span>Jakarta, Indonesia</span>
+        </footer>
+      </main>
+    </div>
   );
 }
